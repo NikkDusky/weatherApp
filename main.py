@@ -5,7 +5,7 @@ from json import load
 def startWeather() -> None:
     lat = config["lattitude"]
     lon = config["longitude"]
-    api = config["apikey"]
+    api = config["apikey"] # https://openweathermap.org/api ; https://openweathermap.org/current
 
     WeatherTEXT = Weather(lat, lon, api)
     print(WeatherTEXT)
