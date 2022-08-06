@@ -5,9 +5,9 @@ class Main():
         pass
 
     def Info(self) -> None:
-        lat = Settings["lattitude"]
-        lon = Settings["longitude"]
-        api = Settings["apikey"]
+        lat = Settings["lattitude"] #some problems with mypy Value of type "Optional[ConfigDictionary]" is not indexable
+        lon = Settings["longitude"] #some problems with mypy Value of type "Optional[ConfigDictionary]" is not indexable
+        api = Settings["apikey"] #some problems with mypy Value of type "Optional[ConfigDictionary]" is not indexable
         self.WeatherJSON = GetWeather(lat, lon, api)
     
 if __name__ == "__main__":
@@ -17,6 +17,6 @@ if __name__ == "__main__":
     else:
         WeatherApp = Main()
         WeatherApp.Info()
-        print(WeatherApp.WeatherJSON)
-        print(f'Температура {WeatherApp.WeatherJSON["main"]["temp"]} градуса')
-        print(f'Ощущается как {WeatherApp.WeatherJSON["main"]["feels_like"]} градуса')
+        print(WeatherApp.WeatherJSON) #some problems with mypy Cannot determine type of "WeatherJSON"
+        print(f'Температура {WeatherApp.WeatherJSON["main"]["temp"]} градуса') #some problems with mypy Cannot determine type of "WeatherJSON"
+        print(f'Ощущается как {WeatherApp.WeatherJSON["main"]["feels_like"]} градуса') #some problems with mypy Cannot determine type of "WeatherJSON"
