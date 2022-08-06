@@ -5,12 +5,18 @@ class Main():
         pass
 
     def Info(self) -> None:
-        lat = Config.settings["lattitude"]
-        lon = Config.settings["longitude"]
-        api = Config.settings["apikey"]
+        lat = Settings["lattitude"]
+        lon = Settings["longitude"]
+        api = Settings["apikey"]
         self.WeatherJSON = GetWeather(lat, lon, api)
     
 if __name__ == "__main__":
-    WeatherApp = Main()
-    WeatherApp.Info()
-    print(WeatherApp.WeatherJSON)
+    Settings = Config()
+    if Settings == None:
+        print("Укажите apikey, долготу и широту в config.json")
+    else:
+        WeatherApp = Main()
+        WeatherApp.Info()
+        print(WeatherApp.WeatherJSON)
+        print(f'Температура {WeatherApp.WeatherJSON["main"]["temp"]} градуса')
+        print(f'Ощущается как {WeatherApp.WeatherJSON["main"]["feels_like"]} градуса')
