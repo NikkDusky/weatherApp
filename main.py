@@ -1,21 +1,16 @@
-from api_weather import Weather
-from os.path import exists
-from json import load
+from api import GetWeather
+from config import Config
+class Main():
+    def __init__(self) -> None:
+        pass
 
-def startWeather() -> None:
-    lat = config["lattitude"]
-    lon = config["longitude"]
-    api = config["apikey"] # https://openweathermap.org/api ; https://openweathermap.org/current
-
-    WeatherTEXT = Weather(lat, lon, api)
-    print(WeatherTEXT)
-
+    def Info(self) -> None:
+        lat = Config.settings["lattitude"]
+        lon = Config.settings["longitude"]
+        api = Config.settings["apikey"]
+        self.WeatherJSON = GetWeather(lat, lon, api)
+    
 if __name__ == "__main__":
-    if exists("config.json"):
-        with open("config.json", "r") as f:
-            config = load(f)
-    else:
-        with open("config.json", "w") as f:
-            f.write('{\n\t"apikey": "",\n\t"lattitude": 0.0000,\n\t"longitude": 0.0000\n}')
-
-    startWeather()
+    WeatherApp = Main()
+    WeatherApp.Info()
+    print(WeatherApp.WeatherJSON)

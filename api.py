@@ -1,6 +1,8 @@
 from typing import TypedDict
 from requests import get
 
+# https://openweathermap.org/api ; https://openweathermap.org/current
+
 class CoordinatesDict(TypedDict):
     lon: float
     lat: float
@@ -48,6 +50,6 @@ class DictionaryOfWeather(TypedDict):
     dt: int
     id: int
 
-def Weather(lattitude: float, longitude:float, apiKey: str) -> DictionaryOfWeather:
+def GetWeather(lattitude: float, longitude:float, apiKey: str) -> DictionaryOfWeather:
     Weather = get(f"https://api.openweathermap.org/data/2.5/weather?lat={lattitude}&lon={longitude}&appid={apiKey}&lang=ru&units=metric")
     return Weather.json()
